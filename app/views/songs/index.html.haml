@@ -1,0 +1,14 @@
+%table.table
+  %tr
+    %th Title
+    %th Artist
+    %th
+    %th
+    %th
+
+  - @songs.each do |song|
+    %tr
+      %td= song.title
+      %td= song.artist
+      %td= link_to 'Show', song
+      %td= link_to 'Edit', edit_song_path(song)

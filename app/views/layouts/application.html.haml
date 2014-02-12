@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+%html{ 'xml:lang' => :en, lang: :en, xmlns: 'http://www.w3.org/1999/xhtml' }
+  %head
+    %title Radiomega
+    %meta{ charset: 'utf-8' }
+    %meta{ 'http-equiv' => 'X-UA-Compatible', 'content' => 'IE=edge' }
+    %meta{ name: :viewport, content: 'width=device-width, initial-scale=1' }
+    = stylesheet_link_tag 'application', media: :all,
+                          'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    .navbar.navbar-inverse.navbar-fixed-top
+      .container
+        .navbar-header
+          = link_to 'Radi&#937;'.html_safe,
+                    :root, :class => 'navbar-brand'
+    .main.container{ id: [params[:controller], '_', params[:action]].join }
+      = yield
