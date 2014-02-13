@@ -11,10 +11,11 @@
  *= require_self
  *= require_tree .
  */
- @import "bootstrap";
+$body-bg: #3F586C;
+
+@import "bootstrap";
 
 body {
-  background-color: #3F586C;
   .main {
     height: 100%;
     margin-top: 45px;
