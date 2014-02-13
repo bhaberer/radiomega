@@ -4,6 +4,7 @@ ruby '2.0.0'
 
 gem 'rails',                              '4.0.2'
 gem 'mysql2'
+gem 'pg'
 gem 'haml-rails'
 gem 'rspec-rails'
 gem 'sass-rails',                         '~> 4.0.0'
