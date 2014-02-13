@@ -1,3 +1,3 @@
 class Song < ActiveRecord::Base
-  has_many :plays, dependant: :destroy
+  has_many :plays, dependent: :destroy
 end
