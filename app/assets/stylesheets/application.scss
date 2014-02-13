@@ -34,7 +34,10 @@ body {
       width: 100%;
       border-bottom: 1px solid black;
     }
-    .even_row { background-color: #dddddd }
+    .even_row {
+      border-radius: 2px;
+      background-color: #dddddd
+    }
     .play {
       .time, .artist, .title, .nick {
         line-height: 30px;
