@@ -1,5 +1,5 @@
 class Setlist < ActiveRecord::Base
-  has_many :plays
+  has_many :plays, dependent: :destroy
   has_many :songs, through: :plays
 
   validates :title,   presence: true
