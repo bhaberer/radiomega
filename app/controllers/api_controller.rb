@@ -8,7 +8,7 @@ class ApiController < ApplicationController
       @song = Song.find_or_create_by_artist_and_title(params[:artist],
                                                       params[:title])
       @play = Play.create!(song: @song, nick: params[:nick])
-      @play.add_to_current_set
+      @play.add_to_set
       respond_with(@play)
     else
       render json: { error: "Invalid Play data", status: 406 }

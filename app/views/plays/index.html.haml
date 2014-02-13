@@ -1,16 +1,11 @@
 - @setlists.each do |setlist|
   %div[setlist]
     %h2= setlist.title
-    %table.table
-      %tr
-        %th Time
-        %th Played By
-        %th Title
-        %th Artist
-
-      - @plays.each do |play|
-        %tr
-          %td= play.created_at.strftime('%R')
-          %td= play.nick
-          %td= play.song.title
-          %td= play.song.artist
+    - setlist.plays.each do |play|
+      %div.row[play]
+        .col-md-1= play.created_at.strftime('%R')
+        .col-md-2= play.nick
+        .col-md-4= play.song.title
+        .col-md-4= play.song.artist
+        .col-md-1= link_to  image_tag('youtube.png', size: '40x40'),
+                            play.song.youtube_link, target: '_blank'
