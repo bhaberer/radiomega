@@ -1,0 +1,13 @@
+%table.table
+  %tr
+    %th Time
+    %th Played By
+    %th Title
+    %th Artist
+
+  - @plays.each do |play|
+    %tr
+      %td= play.created_at.strftime('%R')
+      %td= play.nick
+      %td= play.song.title
+      %td= play.song.artist
