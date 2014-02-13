@@ -15,5 +15,9 @@
         .navbar-header
           = link_to 'Radi&#937;'.html_safe,
                     :root, :class => 'navbar-brand'
+        %ul.nav.navbar-nav
+          %li= link_to 'Songs', songs_path
+          %li= link_to 'Plays', plays_path
+          %li= link_to 'Setlists', setlists_path
     .main.container{ id: [params[:controller], '_', params[:action]].join }
       = yield

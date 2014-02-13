@@ -1,11 +1,16 @@
-- @setlists.each do |setlist|
-  %div[setlist]
-    %h2= setlist.title
-    - setlist.plays.each do |play|
-      %div.row[play]
-        .col-md-1= play.created_at.strftime('%R')
-        .col-md-2= play.nick
-        .col-md-4= play.song.title
-        .col-md-4= play.song.artist
-        .col-md-1= link_to  image_tag('youtube.png', size: '40x40'),
-                            play.song.youtube_link, target: '_blank'
+#plays
+  - @setlists.each do |setlist|
+    %div[setlist]
+      %h2= setlist.title
+      - setlist.plays.each do |play|
+        .row
+          .col-md-12
+            %div[play]{ class: cycle(:even_row, :odd_row) }
+              .row 
+                .col-md-1.time=   play.created_at.strftime('%R')
+                .col-md-1.nick=   play.nick
+                .col-md-4.title=  play.song.title
+                .col-md-4.artist= play.song.artist
+                .col-md-2.links
+                  = link_to  image_tag('youtube.png', size: '30x30'),
+                             play.song.youtube_link, target: '_blank'

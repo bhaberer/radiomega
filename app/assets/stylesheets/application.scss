@@ -19,6 +19,29 @@ body {
   .main {
     height: 100%;
     margin-top: 45px;
+  }
+}
+
+#plays {
+  .setlist {
     background-color: white;
+    margin: 20px auto;
+    border-radius: 2px;
+    padding: 10px;
+    box-shadow: 0 0 10px black;
+    h2 {
+      margin-top: 0px;
+      width: 100%;
+      border-bottom: 1px solid black;
+    }
+    .even_row { background-color: #dddddd }
+    .play {
+      .time, .artist, .title, .nick {
+        line-height: 30px;
+      }
+      .time {
+        text-align: center;
+      }
+    }
   }
 }
