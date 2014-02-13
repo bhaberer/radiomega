@@ -14,5 +14,7 @@ class Song < ActiveRecord::Base
     doc = Nokogiri::HTML(open(url))
     video = doc.xpath("//ol[@id='search-results']/li[1]/div[1]/a")[0].attribute('href').content
     update_attribute(:youtube_link, "http://youtube.com/#{video}") unless video.nil?
+  rescue NoMethodError
+    update_attribute(:youtube_link, url)
   end
 end
