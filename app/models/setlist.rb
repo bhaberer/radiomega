@@ -4,6 +4,8 @@ class Setlist < ActiveRecord::Base
 
   validates :title,   presence: true
 
+  default_scope order('title desc')
+
   def self.for_date(time)
     find_or_create_by(title: time.strftime('%F'))
   end
