@@ -1,4 +1,5 @@
 Radiomega::Application.routes.draw do
+  resources :setlists
   resources :songs
   resources :plays
 

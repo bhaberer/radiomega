@@ -1,0 +1,19 @@
+%h1 Listing setlists
+
+%table.table
+  %tr
+    %th Title
+    %th
+    %th
+    %th
+
+  - @setlists.each do |setlist|
+    %tr
+      %td= setlist.title
+      %td= link_to 'Show', setlist
+      %td= link_to 'Edit', edit_setlist_path(setlist)
+      %td= link_to 'Destroy', setlist, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Setlist', new_setlist_path

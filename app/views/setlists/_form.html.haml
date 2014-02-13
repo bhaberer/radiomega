@@ -1,0 +1,10 @@
+= form_for @setlist do |f|
+  - if @setlist.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@setlist.errors.count, "error")} prohibited this setlist from being saved:"
+      %ul
+        - @setlist.errors.full_messages.each do |msg|
+          %li= msg
+
+  .actions
+    = f.submit 'Save'

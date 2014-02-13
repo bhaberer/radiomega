@@ -11,11 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140212231800) do
+ActiveRecord::Schema.define(version: 20140213201740) do
 
   create_table "plays", force: true do |t|
     t.integer  "song_id"
     t.string   "nick"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "setlist_id"
+  end
+
+  create_table "setlists", force: true do |t|
+    t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

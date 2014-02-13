@@ -4,6 +4,7 @@ class PlaysController < ApplicationController
   # GET /plays
   # GET /plays.json
   def index
+    @setlists = Setlist.all
     @plays = Play.all
   end
 
