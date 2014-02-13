@@ -7,7 +7,8 @@ class ApiController < ApplicationController
       @nick = params[:nick]
       @song = Song.find_or_create_by_artist_and_title(params[:artist],
                                                       params[:title])
-      @play = Play.create!(song: @song, nick: params[:nick])
+      @play = Play.create!(song: @song, nick: params[:nick], time: Time.now)
+      @play.update_attribute(:time, params[:time]) if params.key?(:time)
       @play.add_to_set
       respond_with(@play)
     else
