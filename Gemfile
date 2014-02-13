@@ -5,7 +5,6 @@ ruby '2.0.0'
 gem 'rails',                              '4.0.2'
 gem 'rake'
 gem 'mysql2'
-gem 'pg'
 gem 'haml-rails'
 gem 'rspec-rails'
 gem 'sass-rails',                         '~> 4.0.0'
@@ -13,6 +12,10 @@ gem 'uglifier',                           '>= 1.3.0'
 gem 'coffee-rails',                       '~> 4.0.0'
 gem 'bootstrap-sass',                     '~> 3.0.3.0'
 
+group :production do
+  gem 'rails_12factor'
+  gem 'pg'
+end
 
 # gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
