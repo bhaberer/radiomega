@@ -10,6 +10,7 @@ class Song < ActiveRecord::Base
   default_scope order([:artist, :title])
 
   after_create :set_youtube_id
+  after_save :set_youtube_id
 
   def song_text
     "#{title} - #{artist}".split.map(&:capitalize).join(' ')
@@ -31,7 +32,8 @@ class Song < ActiveRecord::Base
     where('youtube_id IS NOT NULL')
   end
 
-  def set_youtube_id
+  def set_youtube_id(overwrite: false)
+    return unless youtube_id.nil? || overwrite
     url = URI.escape("http://youtube.com/results?search_query=#{artist}+-+#{title}")
     doc = Nokogiri::HTML(open(url))
     video = doc.xpath("//ol[@id='search-results']/li[1]/div[1]/a")[0].attribute('href').content
