@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 20140213233942) do
     t.string   "artist"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "youtube_link"
+    t.string   "youtube_id"
   end
 
 end
