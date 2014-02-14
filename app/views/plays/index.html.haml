@@ -16,7 +16,7 @@
                 .col-md-1.time.text-center= play.time.strftime('%R')
                 .col-md-2.nick= play.nick
                 .col-md-7.title.artist
-                  = play.song.song_text
+                  = link_to play.song.song_text, play.song
                 .col-md-2.links
                   = link_to "Play #{image_tag('youtube-20.png')}".html_safe,
                             play.song.youtube_link,

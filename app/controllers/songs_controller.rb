@@ -1,5 +1,6 @@
 class SongsController < ApplicationController
   before_action :set_song, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!, only: [:edit, :update]
 
   def index
     @songs = Song.all
@@ -9,24 +10,14 @@ class SongsController < ApplicationController
   end
 
   def new
-    @song = Song.new
+    redirect_to songs_path, notice: 'That action is not allowed currently'
   end
 
   def edit
   end
 
   def create
-    @song = Song.new(song_params)
-
-    respond_to do |format|
-      if @song.save
-        format.html { redirect_to @song, notice: 'Song was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @song }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @song.errors, status: :unprocessable_entity }
-      end
-    end
+    redirect_to songs_path, notice: 'That action is not allowed currently'
   end
 
   def update
@@ -41,6 +32,10 @@ class SongsController < ApplicationController
     end
   end
 
+  def destroy
+    redirect_to songs_path, notice: 'That action is not allowed currently'
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -50,6 +45,6 @@ class SongsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def song_params
-    params.require(:song).permit(:title, :artist)
+    params.require(:song).permit(:title, :artist, :youtube_id)
   end
 end

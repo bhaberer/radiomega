@@ -10,24 +10,14 @@ class PlaysController < ApplicationController
   end
 
   def new
-    @play = Play.new
+    redirect_to plays_path, notice: 'That action is not allowed currently'
   end
 
   def edit
   end
 
   def create
-    @play = Play.new(play_params)
-
-    respond_to do |format|
-      if @play.save
-        format.html { redirect_to @play, notice: 'play was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @play }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @play.errors, status: :unprocessable_entity }
-      end
-    end
+    redirect_to plays_path, notice: 'That action is not allowed currently'
   end
 
   def update
@@ -40,6 +30,10 @@ class PlaysController < ApplicationController
         format.json { render json: @play.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def destroy
+    redirect_to plays_path, notice: 'That action is not allowed currently'
   end
 
   private

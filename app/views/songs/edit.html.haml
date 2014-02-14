@@ -1,7 +1,6 @@
-%h1 Editing song
-
-= render 'form'
-
-= link_to 'Show', @song
-\|
-= link_to 'Back', songs_path
+#edit_song
+  .row
+    .col-md-8.col-md-offset-2
+      %div[@song]
+        %h1.text-center Editing #{@song.song_text}
+        = render 'form'

@@ -1,4 +1,5 @@
 Radiomega::Application.routes.draw do
+  devise_for :users
   resources :setlists
   resources :songs
   resources :plays

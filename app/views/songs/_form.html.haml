@@ -5,12 +5,13 @@
       %ul
         - @song.errors.full_messages.each do |msg|
           %li= msg
-
-  .field
+  .form-group
     = f.label :title
-    = f.text_field :title
-  .field
+    = f.text_field :title, class: 'form-control'
+  .form-group
     = f.label :artist
-    = f.text_field :artist
-  .actions
-    = f.submit 'Save'
+    = f.text_field :artist, class: 'form-control'
+  .form-group
+    = f.label :youtube_id, 'Youtube ID'
+    = f.text_field :youtube_id, class: 'form-control'
+  = f.submit 'Save', class: 'btn btn-primary'

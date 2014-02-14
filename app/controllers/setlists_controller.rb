@@ -9,24 +9,14 @@ class SetlistsController < ApplicationController
   end
 
   def new
-    @setlist = Setlist.new
+    redirect_to setlists_path, notice: 'That action is not allowed currently'
   end
 
   def edit
   end
 
   def create
-    @setlist = Setlist.new(setlist_params)
-
-    respond_to do |format|
-      if @setlist.save
-        format.html { redirect_to @setlist, notice: 'Setlist was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @setlist }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @setlist.errors, status: :unprocessable_entity }
-      end
-    end
+    redirect_to setlists_path, notice: 'That action is not allowed currently'
   end
 
   def update
@@ -39,6 +29,10 @@ class SetlistsController < ApplicationController
         format.json { render json: @setlist.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def destroy
+    redirect_to setlists_path, notice: 'That action is not allowed currently'
   end
 
   private

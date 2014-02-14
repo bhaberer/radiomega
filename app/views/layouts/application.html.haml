@@ -3,7 +3,7 @@
   %head
     %title Radiomega
     %meta{ charset: 'utf-8' }
-    %meta{ 'http-equiv' => 'X-UA-Compatible', 'content' => 'IE=edge' }
+    %meta{ 'http-equiv' => 'X-UA-Compatible', content: 'IE=edge' }
     %meta{ name: :viewport, content: 'width=device-width, initial-scale=1' }
     = stylesheet_link_tag 'application', media: :all,
                           'data-turbolinks-track' => true
@@ -26,5 +26,16 @@
             %li= link_to 'Songs', songs_path
             %li= link_to 'Plays', plays_path
             %li= link_to 'Setlists', setlists_path
+          %ul.nav.navbar-nav.pull-right
+            %li
+              - if user_signed_in?
+                = link_to 'Logout', destroy_user_session_path, method: :delete
+              - else
+                = link_to 'Login', new_user_session_path
+
     .main.container{ id: [params[:controller], '_', params[:action]].join }
+      - if notice.present?
+        %div.alert.alert-warning= notice
+      - if alert.present?
+        %div.alert.alert-danger= alert
       = yield
