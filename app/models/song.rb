@@ -7,6 +7,8 @@ class Song < ActiveRecord::Base
   validates :artist,  presence: true
   validates :title,   presence: true
 
+  default_scope order([:artist, :title])
+
   after_create :set_youtube_id
 
   def youtube_link
@@ -15,6 +17,10 @@ class Song < ActiveRecord::Base
     else
       "http://youtube.com/watch?v=#{youtube_id}"
     end
+  end
+
+  def self.youtubed
+    where('youtube_id IS NOT NULL')
   end
 
   def set_youtube_id

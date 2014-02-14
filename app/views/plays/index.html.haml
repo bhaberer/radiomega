@@ -12,5 +12,9 @@
                 .col-md-4.title=  play.song.title.capitalize
                 .col-md-4.artist= play.song.artist.capitalize
                 .col-md-2.links
-                  = link_to  image_tag('youtube.png', size: '30x30'),
-                             play.song.youtube_link, target: '_blank'
+                  = link_to image_tag('youtube.png', size: '30x30'), play.song.youtube_link,
+                    'data-toggle' => :modal, 'data-target' => "#modal_#{play.song.id}"
+
+                //  = link_to  image_tag('youtube.png', size: '30x30'),
+                //             play.song.youtube_link, target: '_blank'
+= render partial: 'songs/song_modal', collection: @songs

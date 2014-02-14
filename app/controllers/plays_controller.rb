@@ -1,11 +1,9 @@
 class PlaysController < ApplicationController
   before_action :set_play, only: [:show, :edit, :update, :destroy]
 
-  # GET /plays
-  # GET /plays.json
   def index
     @setlists = Setlist.all
-    @plays = Play.all
+    @songs = Song.youtubed
   end
 
   # GET /plays/1
