@@ -1,9 +1,12 @@
-%table.table
-  %tr
-    %th Title
-    %th
+#setlists
+  .row
+    .col-md-8.col-md-offset-2
+      %table.table
+        %tr
+          %th Title
+          %th
 
-  - @setlists.each do |setlist|
-    %tr
-      %td= setlist.title
-      %td= link_to 'Show', setlist
+        - @setlists.each do |setlist|
+          %tr
+            %td= setlist.title
+            %td= link_to 'Show', setlist

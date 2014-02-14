@@ -16,7 +16,7 @@
                 .col-md-1.time.text-center= play.time.strftime('%R')
                 .col-md-2.nick= play.nick
                 .col-md-7.title.artist
-                  #{play.song.title.capitalize} - #{play.song.artist.capitalize}
+                  = play.song.song_text
                 .col-md-2.links
                   = link_to "Play #{image_tag('youtube-20.png')}".html_safe,
                             play.song.youtube_link,
@@ -29,7 +29,7 @@
                   .col-sm-9.col-xs-9
                     .row
                       .col-sm-12.col-xs-12.song{ style: 'overflow: hidden;' }
-                        &nbsp;#{play.song.title.capitalize} - #{play.song.artist.capitalize}
+                        &nbsp;#{play.song.song_text}
                     .row
                       .col-sm-12.col-xs-12
                         &nbsp;Played by #{play.nick} at #{play.time.strftime('%R')}

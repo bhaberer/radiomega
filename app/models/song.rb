@@ -11,12 +11,20 @@ class Song < ActiveRecord::Base
 
   after_create :set_youtube_id
 
+  def song_text
+    "#{title} - #{artist}".split.map(&:capitalize).join(' ')
+  end
+
   def youtube_link
     if youtube_id.nil?
       "http://youtube.com/results?search_query=#{artist}+-+#{title}"
     else
       "http://youtube.com/watch?v=#{youtube_id}"
     end
+  end
+
+  def youtube_thumb
+    "http://i1.ytimg.com/vi/#{youtube_id}/mqdefault.jpg"
   end
 
   def self.youtubed

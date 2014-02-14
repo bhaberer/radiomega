@@ -6,22 +6,16 @@ class PlaysController < ApplicationController
     @songs = Song.youtubed
   end
 
-  # GET /plays/1
-  # GET /plays/1.json
   def show
   end
 
-  # GET /plays/new
   def new
     @play = Play.new
   end
 
-  # GET /plays/1/edit
   def edit
   end
 
-  # POST /plays
-  # POST /plays.json
   def create
     @play = Play.new(play_params)
 
@@ -36,8 +30,6 @@ class PlaysController < ApplicationController
     end
   end
 
-  # PATCH/PUT /plays/1
-  # PATCH/PUT /plays/1.json
   def update
     respond_to do |format|
       if @play.update(play_params)
@@ -47,16 +39,6 @@ class PlaysController < ApplicationController
         format.html { render action: 'edit' }
         format.json { render json: @play.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /songs/1
-  # DELETE /songs/1.json
-  def destroy
-    @song.destroy
-    respond_to do |format|
-      format.html { redirect_to songs_url }
-      format.json { head :no_content }
     end
   end
 

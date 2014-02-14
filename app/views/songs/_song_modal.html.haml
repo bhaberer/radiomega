@@ -4,13 +4,6 @@
       .modal-header
         %button.close{ type: :button, 'data-dismiss' => 'modal', 'aria-hidden' => true } 
           &times;
-        %h4.modal-title #{song_modal.title} - #{song_modal.artist}
+        %h4.modal-title= song_modal.song_text
       .modal-body
-        %object{ width: '100%', height: 480 }
-          %param{ name: :movie, value: "http://www.youtube.com/v/#{song_modal.youtube_id}" }
-          %param{ name: 'allowFullScreen', value: true }
-          %param{ name: 'allowscriptaccess', value: :always }
-          %embed{ src: "http://www.youtube.com/v/#{song_modal.youtube_id}",
-                  type: 'application/x-shockwave-flash', width: '100%',
-                  height: 480, 'allowscriptaccess' => :always,
-                  'allowfullscreen' => true }
+        = render partial: 'songs/video', locals: { song: song_modal }
