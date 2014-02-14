@@ -1,6 +1,23 @@
-%p#notice= notice
-
-
-= link_to 'Edit', edit_setlist_path(@setlist)
-\|
-= link_to 'Back', setlists_path
+.row
+  %div.col-md-12[@setlist]
+    .row
+      .col-md-10.col-md-offset-1
+        = render partial: 'setlists/video', locals: { setlist: @setlist }
+    - @setlist.plays.each do |play|
+      .row
+        .col-md-10.col-md-offset-1
+          %div[play]{ class: cycle(:even_row, :odd_row) }
+            .row.hidden-sm.hidden-xs
+              .col-md-1.time.text-center= play.time.strftime('%R')
+              .col-md-2.nick= play.nick
+              .col-md-7.title.artist
+                #{play.song.title.capitalize} - #{play.song.artist.capitalize}
+            .visible-sm.visible-xs
+              .row
+                .col-sm-9.col-xs-9
+                  .row
+                    .col-sm-12.col-xs-12.song{ style: 'overflow: hidden;' }
+                      &nbsp;#{play.song.title.capitalize} - #{play.song.artist.capitalize}
+                  .row
+                    .col-sm-12.col-xs-12
+                      &nbsp;Played by #{play.nick} at #{play.time.strftime('%R')}

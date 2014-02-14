@@ -1,3 +1,48 @@
-// Place all the styles related to the setlists controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.setlist {
+  background-color: white;
+  margin: 20px auto;
+  border-radius: 2px;
+  padding: 10px;
+  box-shadow: 0 0 10px black;
+  h2 {
+    margin-top: 0px;
+    width: 100%;
+    border-bottom: 1px solid black;
+  }
+  .even_row {
+    border-radius: 2px;
+    background-color: #dddddd
+  }
+  .play {
+    .time, .artist, .title, .nick {
+      line-height: 30px;
+    }
+    .links {
+      padding-top: 3px;
+    }
+    .time {
+      text-align: center;
+    }
+    .visible-sm, .visible-xs {
+      .col-xs-3 {
+        padding-top: 4px;
+        padding-right: 20px;
+        .btn-info {
+          width: 100%;
+        }
+      }
+      .col-sm-3 {
+        padding-top: 4px;
+        padding-right: 20px;
+        .btn-info {
+          width: 85%;
+        }
+      }
+      .song {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}

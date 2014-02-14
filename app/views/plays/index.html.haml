@@ -1,7 +1,13 @@
 #plays
   - @setlists.each do |setlist|
     %div[setlist]
-      %h2= setlist.title
+      %h2
+        = link_to setlist.title, setlist
+        .pull-right
+          = link_to "Play Set", '#',
+                    'data-toggle' => :modal,
+                    'data-target' => "#set_modal_#{setlist.id}",
+                    class: 'btn btn-default btn-xs'
       - setlist.plays.each do |play|
         .row
           .col-md-12
@@ -38,3 +44,4 @@
                       'data-toggle' => :modal,
                       'data-target' => "#modal_#{play.song.id}"
 = render partial: 'songs/song_modal', collection: @songs
+= render partial: 'setlists/setlist_modal', collection: @setlists

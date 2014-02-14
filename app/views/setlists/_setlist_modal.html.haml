@@ -1,0 +1,9 @@
+.modal.fade{ id: "set_modal_#{setlist_modal.id}", tabindex: -1, role: :dialog, 'aria-labelledby' => 'myModalLabel', 'aria-hidden' => true }
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        %button.close{ type: :button, 'data-dismiss' => 'modal', 'aria-hidden' => true } 
+          &times;
+        %h4.modal-title Setlist for #{setlist_modal.title}
+      .modal-body
+        = render partial: 'setlists/video', locals: { setlist: setlist_modal }
