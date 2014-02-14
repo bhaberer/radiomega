@@ -7,10 +7,10 @@
           .col-md-12
             %div[play]{ class: cycle(:even_row, :odd_row) }
               .row.hidden-sm.hidden-xs
-                .col-md-1.time=   play.time.strftime('%R')
-                .col-md-1.nick=   play.nick
+                .col-md-1.time.text-center= play.time.strftime('%R')
+                .col-md-2.nick= play.nick
                 .col-md-4.title=  play.song.title.capitalize
-                .col-md-4.artist= play.song.artist.capitalize
+                .col-md-3.artist= play.song.artist.capitalize
                 .col-md-2.links
                   = link_to "Play #{image_tag('youtube-20.png')}".html_safe,
                             play.song.youtube_link,
