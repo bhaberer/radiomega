@@ -13,11 +13,18 @@
     .navbar.navbar-inverse.navbar-fixed-top
       .container
         .navbar-header
+          %button.navbar-toggle{  type: :button, 'data-toggle' => :collapse,
+                                  'data-target' => '#navbar-collapse' }
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
           = link_to 'Radi&#937;'.html_safe,
                     :root, :class => 'navbar-brand'
-        %ul.nav.navbar-nav
-          %li= link_to 'Songs', songs_path
-          %li= link_to 'Plays', plays_path
-          %li= link_to 'Setlists', setlists_path
+        #navbar-collapse.collapse.navbar-collapse
+          %ul.nav.navbar-nav
+            %li= link_to 'Songs', songs_path
+            %li= link_to 'Plays', plays_path
+            %li= link_to 'Setlists', setlists_path
     .main.container{ id: [params[:controller], '_', params[:action]].join }
       = yield

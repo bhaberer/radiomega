@@ -6,15 +6,35 @@
         .row
           .col-md-12
             %div[play]{ class: cycle(:even_row, :odd_row) }
-              .row
+              .row.hidden-sm.hidden-xs
                 .col-md-1.time=   play.time.strftime('%R')
                 .col-md-1.nick=   play.nick
                 .col-md-4.title=  play.song.title.capitalize
                 .col-md-4.artist= play.song.artist.capitalize
                 .col-md-2.links
-                  = link_to image_tag('youtube.png', size: '30x30'), play.song.youtube_link,
-                    'data-toggle' => :modal, 'data-target' => "#modal_#{play.song.id}"
+                  = link_to "Play #{image_tag('youtube-20.png')}".html_safe,
+                            play.song.youtube_link,
+                            'data-toggle' => :modal,
+                            'data-target' => "#modal_#{play.song.id}",
+                            class: 'btn btn-default btn-xs'
 
-                //  = link_to  image_tag('youtube.png', size: '30x30'),
-                //             play.song.youtube_link, target: '_blank'
+              .visible-sm.visible-xs
+                .row
+                  .col-sm-9.col-xs-9
+                    .row
+                      .col-sm-12.col-xs-12.song{ style: 'overflow: hidden;' }
+                        &nbsp;#{play.song.title.capitalize} - #{play.song.artist.capitalize}
+                    .row
+                      .col-sm-12.col-xs-12
+                        &nbsp;Played by #{play.nick} at #{play.time.strftime('%R')}
+                  .visible-sm.col-sm-3
+                    = link_to 'Play', play.song.youtube_link,
+                      class: 'btn btn-info btn-sm',
+                      'data-toggle' => :modal,
+                      'data-target' => "#modal_#{play.song.id}"
+                  .visible-xs.col-xs-3{ style: 'padding-top: 4px;' }
+                    = link_to 'Play', play.song.youtube_link,
+                      class: 'btn btn-info btn-sm',
+                      'data-toggle' => :modal,
+                      'data-target' => "#modal_#{play.song.id}"
 = render partial: 'songs/song_modal', collection: @songs

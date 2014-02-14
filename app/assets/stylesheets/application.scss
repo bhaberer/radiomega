@@ -47,8 +47,32 @@ body {
       .time, .artist, .title, .nick {
         line-height: 30px;
       }
+      .links {
+        padding-top: 3px;
+      }
       .time {
         text-align: center;
+      }
+      .visible-sm, .visible-xs {
+        .col-xs-3 {
+          padding-top: 4px;
+          padding-right: 20px;
+          .btn-info {
+            width: 100%;
+          }
+        }
+        .col-sm-3 {
+          padding-top: 4px;
+          padding-right: 20px;
+          .btn-info {
+            width: 85%;
+          }
+        }
+        .song {
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
       }
     }
   }
