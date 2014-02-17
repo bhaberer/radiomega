@@ -11,11 +11,11 @@ class Setlist < ActiveRecord::Base
   end
 
   def first_song
-    songs.order('time').first.youtube_id
+    plays.order('time asc').first.song.youtube_id
   end
 
   def playlist
-    playlist = songs.order('time').map(&:youtube_id)[1..-1]
+    playlist = plays.order('time asc').map(&:song).map(&:youtube_id)[1..-1]
     playlist = [playlist] unless playlist.is_a?(Array)
     playlist.join(',')
   end
