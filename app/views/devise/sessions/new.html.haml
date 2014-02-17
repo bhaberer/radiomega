@@ -11,10 +11,11 @@
         .form-group
           = f.label :password
           = f.password_field :password, class: 'form-control'
-        .form-group
-          - if devise_mapping.rememberable?
-            = f.check_box :remember_me, class: 'form-control'
-            = f.label :remember_me
+        - if devise_mapping.rememberable?
+          .checkbox
+            %label
+              = f.check_box :remember_me, class: 'form-control'
+              Remember Me
         = f.submit 'Sign in', class: 'btn btn-primary'
         %br
         = render "devise/shared/links"
