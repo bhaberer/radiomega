@@ -16,6 +16,7 @@
 /tmp
 .env
 
+config/initializers/secret.rb
 .*.swp
 log/*.log
 vendor/bundler_gems/*

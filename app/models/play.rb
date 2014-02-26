@@ -4,6 +4,10 @@ class Play < ActiveRecord::Base
 
   default_scope order('time desc')
 
+  def playlist_order
+    order('time asc')
+  end
+
   def add_to_set
     set = Setlist.for_date(self.time)
     set.plays << self
