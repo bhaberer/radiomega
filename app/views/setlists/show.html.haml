@@ -11,7 +11,7 @@
               .col-md-1.time.text-center= play.time.strftime('%R')
               .col-md-2.nick= play.nick
               .col-md-7.title.artist
-                #{play.song.title.capitalize} - #{play.song.artist.capitalize}
+                = link_to play.song.song_text, play.song
             .visible-sm.visible-xs
               .row
                 .col-sm-9.col-xs-9
