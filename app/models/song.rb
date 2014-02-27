@@ -3,6 +3,7 @@ require 'open-uri'
 
 class Song < ActiveRecord::Base
   has_many :plays, dependent: :destroy
+  has_many :setlists, through: :plays
 
   validates :artist,  presence: true
   validates :title,   presence: true
@@ -11,6 +12,10 @@ class Song < ActiveRecord::Base
 
   after_create :set_youtube_id
   after_save :set_youtube_id
+
+  def play_count
+    plays.count
+  end
 
   def song_text
     "#{title} - #{artist}".split.map(&:capitalize).join(' ')

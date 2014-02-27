@@ -1,18 +1,18 @@
 #songs
-  %table.table
-    %tr
-      %th
-      %th Song
-      %th
-      %th
-
+  .row
     - @songs.each do |song|
-      %tr[song]
-        %td= link_to image_tag(song.youtube_thumb, border: 0), song.youtube_link,
-                'data-toggle' => :modal,
-                'data-target' => "#modal_#{song.id}"
-        %td= song.song_text
-        %td= link_to 'Show', song
-        %td= link_to 'Edit', edit_song_path(song)
+      .col-md-4
+        .defdiv[song]
+          .row
+            .col-md-12
+              .yt_image{ style: "background-image: url(#{song.youtube_thumb});",
+                         onclick: "location.href='#{song_path(song)}';" }
+                = link_to '', song.youtube_link,
+                  'data-toggle' => :modal,
+                  'data-target' => "#modal_#{song.id}"
+            .col-md-12.information
+              = link_to song.song_text, song
+            .col-md-12.controls
+              = link_to 'Edit', edit_song_path(song), class: 'btn btn-info'
 
 = render partial: 'songs/song_modal', collection: @songs

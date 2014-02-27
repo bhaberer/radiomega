@@ -23,9 +23,12 @@
                     :root, :class => 'navbar-brand'
         #navbar-collapse.collapse.navbar-collapse
           %ul.nav.navbar-nav
-            %li= link_to 'Songs', songs_path
-            %li= link_to 'Plays', plays_path
-            %li= link_to 'Setlists', setlists_path
+            %li{ class: active_class?(songs_path) }
+              = link_to 'Songs', songs_path
+            %li{ class: active_class?(plays_path) }
+              = link_to 'Plays', plays_path
+            %li{ class: active_class?(setlists_path) }
+              = link_to 'Setlists', setlists_path
           %ul.nav.navbar-nav.pull-right
             %li
               - if user_signed_in?

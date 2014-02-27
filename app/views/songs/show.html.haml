@@ -1,2 +1,14 @@
 #song
-  = render partial: 'songs/video', locals: { song: @song }
+  .defdiv
+    = render partial: 'songs/video', locals: { song: @song }
+  .row
+    .col-md-6.col-md-offset-3
+      .defdiv
+        %h2 Played #{@song.play_count} times.
+        - @song.plays.each do |play|
+          = play.nick
+          played this at
+          = play.time.strftime('%R')
+          as part of the
+          = link_to play.setlist.title, play.setlist
+          set.

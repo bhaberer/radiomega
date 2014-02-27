@@ -1,23 +1,22 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
  *= require_self
+ *= require 'mixins'
  *= require_tree .
  */
-$body-bg: #3F586C;
 
+$body-bg: #3F586C;
 
 @import "bootstrap";
 
 @media (min-width: $screen-md-min) {
   .modal-lg { width: $modal-lg; }
+}
+.defdiv {
+  background-color: white;
+  margin: 20px auto;
+  border-radius: 2px;
+  padding: 10px;
+  box-shadow: 0 0 10px black;
 }
 
 body {
@@ -26,10 +25,81 @@ body {
     margin-top: 45px;
   }
   .devise {
-    background-color: white;
-    margin: 20px auto;
+    @extend .defdiv;
+  }
+}
+
+#setlists {
+  @extend .defdiv;
+}
+
+#setlist { }
+
+.setlist {
+  h2 {
+    margin-top: 0px;
+    width: 100%;
+    border-bottom: 1px solid black;
+  }
+  .even_row {
     border-radius: 2px;
-    padding: 10px;
-    box-shadow: 0 0 10px black;
+    background-color: #dddddd
+  }
+  .play {
+    .time, .artist, .title, .nick {
+      line-height: 30px;
+    }
+    .links {
+      padding-top: 3px;
+    }
+    .time {
+      text-align: center;
+    }
+    .visible-sm, .visible-xs {
+      .col-xs-3 {
+        padding-top: 4px;
+        padding-right: 20px;
+        .btn-info {
+          width: 100%;
+        }
+      }
+      .col-sm-3 {
+        padding-top: 4px;
+        padding-right: 20px;
+        .btn-info {
+          width: 85%;
+        }
+      }
+      .song {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
+#songs {
+  .song {
+    .yt_image {
+      border-radius: 3px;
+      cursor: pointer;
+      width: 92%;
+      height: 180px;
+      background-position: 50% 0%;
+      background-repeat: no-repeat;
+      margin: 0 4%;
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+    .information {
+      margin: 10px 0;
+      font-size: 15px;
+      font-weight: bold;
+      line-height: 15px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
   }
 }
