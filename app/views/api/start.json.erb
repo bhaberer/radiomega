@@ -1,0 +1,5 @@
+{
+  "url": "<%= setlist_url(@setlist) %>",
+  "live": "<%= @setlist.live %>",
+  "ended": "<%= @ended.map(&:id).join(',') %>"
+}

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140214211732) do
+ActiveRecord::Schema.define(version: 20140227094658) do
 
   create_table "plays", force: true do |t|
     t.integer  "song_id"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 20140214211732) do
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "owner"
+    t.boolean  "live",       default: false
   end
 
   create_table "songs", force: true do |t|

@@ -10,7 +10,11 @@ Radiomega::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'plays#index'
 
-  post 'api/play' => 'api#play'
+  namespace :api do
+    post 'play'
+    post 'start'
+    post 'end'
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

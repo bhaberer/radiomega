@@ -4,14 +4,28 @@ class Setlist < ActiveRecord::Base
 
   validates :title,   presence: true
 
-  default_scope order('title desc')
+  default_scope { order('title desc') }
 
   def self.for_date(time)
     find_or_create_by(title: time.strftime('%F'))
   end
 
+  def end
+    update_attribute(:live, false)
+  end
+
+  def start
+    update_attribute(:live, true)
+  end
+
+  def self.end_for_owner(owner)
+    sets = where(owner: owner, live: true)
+    sets.map(&:end)
+  end
+
   def first_song
-    plays.sort { |x, y| x.time <=> y.time }.first.song.youtube_id
+    play = plays.sort { |x, y| x.time <=> y.time }.first
+    play.song.youtube_id unless play.nil?
   end
 
   def playlist

@@ -12,7 +12,39 @@ class ApiController < ApplicationController
       @play.add_to_set
       respond_with(@play)
     else
-      render json: { error: "Invalid Play data", status: 406 }
+      render  json: { error: 'Invalid Play data', status: 406 },
+              status: 406
+    end
+  end
+
+  def start
+    title = params[:title]
+    owner = params[:owner].downcase
+    if title && owner
+      @ended = Setlist.end_for_owner(owner)
+      @setlist = Setlist.create!(owner: owner, title: title)
+      @setlist.start
+      respond_with(@setlist)
+    else
+      render  json: { error: 'Invalid Data', status: 406 },
+              status: 406
+    end
+  end
+
+  def end
+    owner = params[:owner].downcase
+    if owner
+      @setlist = Setlist.where(owner: owner, live: true).first
+      if @setlist
+        @setlist.end
+        respond_with(@setlist)
+      else
+        render  json: { error: 'No set running for that user', status: 404},
+                status: 404
+      end
+    else
+      render  json: { error: 'Invalid Data', status: 406 },
+              status: 406
     end
   end
 end
