@@ -1,6 +1,11 @@
 Radiomega::Application.routes.draw do
   devise_for :users
-  resources :setlists
+  resources :setlists do
+    collection do
+      get 'last'
+      get 'today'
+    end
+  end
   resources :songs
   resources :plays
 

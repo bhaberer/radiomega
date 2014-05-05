@@ -35,6 +35,14 @@ class SetlistsController < ApplicationController
     redirect_to setlists_path, notice: 'That action is not allowed currently'
   end
 
+  def last
+    redirect_to Setlist.last
+  end
+
+  def today
+    redirect_to Setlist.last
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
