@@ -36,11 +36,11 @@ class SetlistsController < ApplicationController
   end
 
   def last
-    redirect_to Setlist.last
+    redirect_to Setlist.order(:created_at).first
   end
 
   def today
-    redirect_to Setlist.last
+    redirect_to Setlist.order(:created_at).first
   end
 
   private
