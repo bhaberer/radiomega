@@ -1,8 +1,8 @@
 %object{ width: '100%', height: 480 }
-  %param{ name: :movie, value: "http://www.youtube.com/v/#{song.youtube_id}" }
+  %param{ name: :movie, value: "https://www.youtube.com/v/#{song.youtube_id}" }
   %param{ name: 'allowFullScreen', value: true }
   %param{ name: 'allowscriptaccess', value: :always }
-  %embed{ src: "http://www.youtube.com/v/#{song.youtube_id}",
+  %embed{ src: "https://www.youtube.com/v/#{song.youtube_id}",
           type: 'application/x-shockwave-flash', width: '100%',
           height: 480, 'allowscriptaccess' => :always,
           'allowfullscreen' => true }

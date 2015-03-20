@@ -23,14 +23,14 @@ class Song < ActiveRecord::Base
 
   def youtube_link
     if youtube_id.nil?
-      "http://youtube.com/results?search_query=#{artist}+-+#{title}"
+      "https://youtube.com/results?search_query=#{artist}+-+#{title}"
     else
-      "http://youtube.com/watch?v=#{youtube_id}"
+      "https://youtube.com/watch?v=#{youtube_id}"
     end
   end
 
   def youtube_thumb
-    "http://i1.ytimg.com/vi/#{youtube_id}/mqdefault.jpg"
+    "https://i1.ytimg.com/vi/#{youtube_id}/mqdefault.jpg"
   end
 
   def self.youtubed
@@ -39,7 +39,7 @@ class Song < ActiveRecord::Base
 
   def set_youtube_id(overwrite: false)
     return unless youtube_id.nil? || overwrite
-    url = URI.escape("http://youtube.com/results?search_query=#{artist}+-+#{title}")
+    url = URI.escape("https://youtube.com/results?search_query=#{artist}+-+#{title}")
     doc = Nokogiri::HTML(open(url))
     video = doc.xpath("//ol[@id='search-results']/li[1]/div[1]/a")[0].attribute('href').content
     id = video[/\A\/watch\?v=(.+)\z/, 1]
