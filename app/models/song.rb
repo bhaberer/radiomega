@@ -41,11 +41,12 @@ class Song < ActiveRecord::Base
     return unless youtube_id.nil? || overwrite
     url = URI.escape("https://youtube.com/results?search_query=#{artist}+-+#{title}")
     doc = Nokogiri::HTML(open(url))
-    video = doc.xpath("//ol[@id='search-results']/li[1]/div[1]/a")[0].attribute('href').content
-    id = video[/\A\/watch\?v=(.+)\z/, 1]
+    id = doc.xpath("//div[@id='results']/ol[1]/li[1]/ol[1]/li[1]/div[1]")
+            .attribute("data-context-item-id").content
     update_attribute(:youtube_id, id) unless id.nil?
     self
   rescue NoMethodError
+    puts "Got no method error, Youtube probably changed their page again."
     false
   end
 end
