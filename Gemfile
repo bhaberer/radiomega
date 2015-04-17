@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
-ruby '2.1.1'
+ruby '2.1.3'
 
-gem 'rails',                              '4.0.3'
+gem 'rails',                              '4.2.1'
 gem 'rake'
-gem 'mysql2'
+gem 'pg'
 gem 'haml-rails'
 gem 'rspec-rails'
 gem 'devise'
@@ -13,10 +13,10 @@ gem 'sass-rails',                         '~> 4.0.0'
 gem 'uglifier',                           '>= 1.3.0'
 gem 'coffee-rails',                       '~> 4.0.0'
 gem 'bootstrap-sass',                     '~> 3.1.1'
+gem 'airbrake'
 
 group :production do
   gem 'rails_12factor'
-  gem 'pg'
 end
 
 # gem 'therubyracer', platforms: :ruby
