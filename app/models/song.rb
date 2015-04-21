@@ -8,7 +8,7 @@ class Song < ActiveRecord::Base
   validates :artist,  presence: true
   validates :title,   presence: true
 
-  default_scope order([:artist, :title])
+  default_scope { order([:artist, :title]) }
 
   after_create :set_youtube_id
   after_save :set_youtube_id

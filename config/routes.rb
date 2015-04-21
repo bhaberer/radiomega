@@ -1,24 +1,29 @@
 Radiomega::Application.routes.draw do
   devise_for :users
+
   resources :setlists do
     collection do
       get 'last'
       get 'today'
     end
   end
+
+  get 'scratch' => 'setlists#scratch', as: :scratch
+
   resources :songs
+
   resources :plays
 
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
   root 'plays#index'
 
   namespace :api do
     post 'play'
+    post 'register'
+    post 'scratch'
+    get 'scratch'
     post 'start'
     post 'end'
+    get 'nicks'
   end
 
   # Example of regular route:

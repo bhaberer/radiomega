@@ -1,0 +1,31 @@
+.row
+  .col-md-10.col-md-offset-1
+    .defdiv.setlist
+      %h3{ style: 'border-bottom: 1px solid #999' }
+        Your scratch pad
+      - if @scratch.plays.length.zero?
+        %p
+          You have no scratches, you can add some if you send a track directly
+          to the bot.
+        %p
+          e.g.
+        %p
+          %pre
+            \/msg fred ++ title - artist
+      - else
+        - @scratch.plays.each do |play|
+          %div[play]{ class: cycle(:even_row, :odd_row) }
+            .row.hidden-sm.hidden-xs
+              .col-md-1.time.text-center= play.time.strftime('%R')
+              .col-md-2.nick= play.nick
+              .col-md-7.title.artist
+                = link_to play.song.song_text, play.song
+            .visible-sm.visible-xs
+              .row
+                .col-sm-9.col-xs-9
+                  .row
+                    .col-sm-12.col-xs-12.song{ style: 'overflow: hidden;' }
+                      &nbsp;#{play.song.title.capitalize} - #{play.song.artist.capitalize}
+                  .row
+                    .col-sm-12.col-xs-12
+                      &nbsp;Played by #{play.nick} at #{play.time.strftime('%R')}

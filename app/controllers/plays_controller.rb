@@ -2,7 +2,7 @@ class PlaysController < ApplicationController
   before_action :set_play, only: [:show, :edit, :update, :destroy]
 
   def index
-    @setlists = Setlist.all
+    @setlists = Setlist.where(type: nil)
     @songs = Song.youtubed
   end
 
