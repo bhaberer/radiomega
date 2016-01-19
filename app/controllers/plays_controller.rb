@@ -1,3 +1,4 @@
+# Controller managing plays
 class PlaysController < ApplicationController
   before_action :set_play, only: [:show, :edit, :update, :destroy]
 
@@ -23,11 +24,11 @@ class PlaysController < ApplicationController
   def update
     respond_to do |format|
       if @play.update(play_params)
-        format.html { redirect_to @play, notice: 'play was successfully updated.' }
-        format.json { head :no_content }
+        format.html do
+          redirect_to @play, notice: 'play was successfully updated.'
+        end
       else
         format.html { render action: 'edit' }
-        format.json { render json: @play.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -43,7 +44,8 @@ class PlaysController < ApplicationController
     @song = Song.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # Never trust parameters from the scary internet, only allow the
+  #   white list through.
   def song_params
     params.require(:song).permit(:title, :artist)
   end
