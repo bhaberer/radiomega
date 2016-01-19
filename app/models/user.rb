@@ -1,3 +1,4 @@
+# User Class
 class User < ActiveRecord::Base
   has_one :scratch, dependent: :destroy
   has_many :set_lists
@@ -9,7 +10,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # private
+  private
 
   def make_scratch
     Scratch.create!(title: "#{id}_scratch", user: self)

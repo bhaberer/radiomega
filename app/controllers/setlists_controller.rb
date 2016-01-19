@@ -1,3 +1,4 @@
+# Setlist controller
 class SetlistsController < ApplicationController
   before_action :set_setlist, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!, only: [:scratch, :update, :edit]

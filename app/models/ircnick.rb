@@ -1,3 +1,4 @@
+# Class for IRC nicks
 class Ircnick < ActiveRecord::Base
   belongs_to :user
 

@@ -1,3 +1,4 @@
+# Songs Controller
 class SongsController < ApplicationController
   before_action :set_song, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!, only: [:edit, :update]
