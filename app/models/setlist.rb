@@ -1,3 +1,4 @@
+# Class for Setlists
 class Setlist < ActiveRecord::Base
   has_many :plays, dependent: :destroy
   has_many :songs, through: :plays
@@ -30,9 +31,8 @@ class Setlist < ActiveRecord::Base
   end
 
   def playlist
-    playlist = plays.sort { |x, y| x.time <=> y.time }
-      .map(&:song)
-      .map(&:youtube_id)[1..-1]
+    playlist = plays.sort { |x, y| x.time <=> y.time }.map(&:song)
+    playlist = playlist.map(&:youtube_id)[1..-1]
     playlist = [playlist] unless playlist.is_a?(Array)
     playlist.join(',')
   end
