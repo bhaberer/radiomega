@@ -1,6 +1,6 @@
 require 'nokogiri'
 require 'open-uri'
-
+# Song Class
 class Song < ActiveRecord::Base
   has_many :plays, dependent: :destroy
   has_many :setlists, through: :plays
@@ -37,16 +37,16 @@ class Song < ActiveRecord::Base
     where('youtube_id IS NOT NULL')
   end
 
-  def set_youtube_id(overwrite: false)
+  def update_youtube_id(overwrite: false)
     return unless youtube_id.nil? || overwrite
     url = URI.escape("https://youtube.com/results?search_query=#{artist}+-+#{title}")
     doc = Nokogiri::HTML(open(url))
     id = doc.xpath("//div[@id='results']/ol[1]/li[1]/ol[1]/li[1]/div[1]")
-            .attribute("data-context-item-id").content
+         .attribute('data-context-item-id').content
     update_attribute(:youtube_id, id) unless id.nil?
     self
   rescue NoMethodError
-    puts "Got no method error, Youtube probably changed their page again."
+    puts 'Got no method error, Youtube probably changed their page again.'
     false
   end
 end
