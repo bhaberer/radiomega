@@ -35,6 +35,15 @@ body {
 
 #setlist { }
 
+#song {
+  .play {
+    .col-md-12 {
+      line-height: 24px;
+      margin: 0px 10px;
+    }
+  }
+}
+
 .setlist {
   h2 {
     margin-top: 0px;

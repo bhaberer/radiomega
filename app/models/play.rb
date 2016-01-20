@@ -2,6 +2,9 @@ class Play < ActiveRecord::Base
   belongs_to :song
   belongs_to :setlist
 
+  validates :setlist, presence: true
+  validates :song, presence: true
+
   default_scope { order('time desc') }
 
   def playlist_order
