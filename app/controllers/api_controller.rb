@@ -4,7 +4,7 @@ class ApiController < ApplicationController
 
   def play
     if (['title', 'nick', 'artist'] & params.keys).length == 3
-      @play = api_create(params)
+      @play = api_create(params['artist'], params['title'], params['nick'])
       respond_with(@play)
     else
       render json: { error: 'Invalid Play data', status: 406 }, status: 406
@@ -15,7 +15,8 @@ class ApiController < ApplicationController
     if ([:title, :nick, :artist] & params.keys).length == 3
       @user = Ircnick.where(nick: params[:nick]).first.user
       fail 'No valid user found' unless @user
-      @play = api_create(params, set: @user.scratch)
+      @play = api_create(params['artist'], params['title'], params['nick'],
+                         set: @user.scratch)
       render json: { message: 'Success', status: 200 }, status: 200
     else
       render json: { error: 'Invalid Play data', status: 406 }, status: 406
@@ -74,8 +75,7 @@ class ApiController < ApplicationController
 
   private
 
-  def api_create(artist, title, nick, time, set: nil)
-    time ||= Time.now
+  def api_create(artist, title, nick, time: Time.now, set: nil)
     song = Song.find_or_create_by(artist: artist, title: title)
     play = Play.create!(song: song, nick: nick, time: time)
     play.add_to_set(set)
