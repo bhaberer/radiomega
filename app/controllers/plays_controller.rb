@@ -3,7 +3,7 @@ class PlaysController < ApplicationController
   before_action :set_play, only: [:show, :edit, :update, :destroy]
 
   def index
-    @setlists = Setlist.where(type: nil)
+    @setlists = Setlist.where(type: nil).paginate(page: params[:page], per_page: 10)
     @songs = Song.youtubed
   end
 
