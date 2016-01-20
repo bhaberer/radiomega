@@ -3,12 +3,8 @@ class ApiController < ApplicationController
   respond_to :json
 
   def play
-    if params.key?(:title) && params.key?(:nick) && params.key?(:artist)
-      @nick = params[:nick]
-      @song = Song.find_or_create_by(artist: params[:artist], title: params[:title])
-      @play = Play.create!(song: @song, nick: params[:nick], time: Time.now)
-      @play.update_attribute(:time, params[:time]) if params.key?(:time)
-      @play.add_to_set
+    if ([:title, :nick, :artist] & params.keys).length == 3
+      @play = api_create(params)
       respond_with(@play)
     else
       render json: { error: 'Invalid Play data', status: 406 }, status: 406
@@ -16,14 +12,10 @@ class ApiController < ApplicationController
   end
 
   def scratch
-    if params.key?(:title) && params.key?(:nick) && params.key?(:artist)
-      @nick = params[:nick]
-      @user = Ircnick.where(nick: @nick).first.user
-      fail "No valid user found" unless @user
-      @song = Song.find_or_create_by(artist: params[:artist], title: params[:title])
-      @play = Play.create!(song: @song, nick: @nick, time: Time.now)
-      @play.update_attribute(:time, params[:time]) if params.key?(:time)
-      @play.add_to_set(@user.scratch)
+    if ([:title, :nick, :artist] & params.keys).length == 3
+      @user = Ircnick.where(nick: params[:nick]).first.user
+      fail 'No valid user found' unless @user
+      @play = api_create(params, set: @user.scratch)
       render json: { message: 'Success', status: 200 }, status: 200
     else
       render json: { error: 'Invalid Play data', status: 406 }, status: 406
@@ -61,8 +53,7 @@ class ApiController < ApplicationController
       @setlist.start
       respond_with(@setlist)
     else
-      render  json: { error: 'Invalid Data', status: 406 },
-              status: 406
+      render json: { error: 'Invalid Data', status: 406 }, status: 406
     end
   end
 
@@ -74,12 +65,19 @@ class ApiController < ApplicationController
         @setlist.end
         respond_with(@setlist)
       else
-        render  json: { error: 'No set running for that user', status: 404},
-                status: 404
+        render json: { error: 'No set running for that user', status: 404}, status: 404
       end
     else
-      render  json: { error: 'Invalid Data', status: 406 },
-              status: 406
+      render json: { error: 'Invalid Data', status: 406 }, status: 406
     end
+  end
+
+  private
+
+  def api_create(artist, title, nick, time, set: nil)
+    time ||= Time.now
+    song = Song.find_or_create_by(artist: artist, title: title)
+    play = Play.create!(song: song, nick: nick, time: time)
+    play.add_to_set(set)
   end
 end

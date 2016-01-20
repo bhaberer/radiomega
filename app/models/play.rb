@@ -13,7 +13,13 @@ class Play < ActiveRecord::Base
     add_to_set(user.scratch)
   end
 
-  def add_to_set(set = Setlist.for_date(self.time))
+  def add_to_set(set = Setlist.for_date(time))
     set.plays << self
+  end
+
+  def self.api_create!(song, nick, time, set: nil)
+    play = Play.create!(song: song, nick: nick, time: time)
+    set.nil ? play.add_to_set(set) : play.add_to_set
+    play
   end
 end

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.1.3'
+ruby '2.2.3'
 
 gem 'rails',                              '4.2.1'
 gem 'rake'
@@ -14,6 +14,7 @@ gem 'uglifier',                           '>= 1.3.0'
 gem 'coffee-rails',                       '~> 4.0.0'
 gem 'bootstrap-sass',                     '~> 3.1.1'
 gem 'airbrake'
+gem 'will_paginate',                      '~> 3.0.7'
 
 group :production do
   gem 'rails_12factor'
