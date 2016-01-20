@@ -10,8 +10,8 @@ class Song < ActiveRecord::Base
 
   default_scope { order([:artist, :title]) }
 
-  after_create :set_youtube_id
-  after_save :set_youtube_id
+  after_create :update_youtube_id
+  after_save :update_youtube_id
 
   def play_count
     plays.count
