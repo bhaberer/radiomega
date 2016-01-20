@@ -77,7 +77,6 @@ class ApiController < ApplicationController
 
   def api_create(artist, title, nick, time: Time.now, set: nil)
     song = Song.find_or_create_by(artist: artist, title: title)
-    play = Play.create!(song: song, nick: nick, time: time)
-    play.add_to_set(set)
+    Play.api_create!(song, nick, time, set)
   end
 end

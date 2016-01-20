@@ -17,9 +17,9 @@ class Play < ActiveRecord::Base
     set.plays << self
   end
 
-  def self.api_create!(song, nick, time, set: nil)
+  def self.api_create!(song, nick, time, set = nil)
     play = Play.create!(song: song, nick: nick, time: time)
-    set.nil ? play.add_to_set(set) : play.add_to_set
+    set.nil? ? play.add_to_set : play.add_to_set(set)
     play
   end
 end

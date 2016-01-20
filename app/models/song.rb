@@ -39,8 +39,9 @@ class Song < ActiveRecord::Base
 
   def update_youtube_id(overwrite: false)
     return unless youtube_id.nil? || overwrite
-    url = URI.escape("https://youtube.com/results?search_query=#{artist}+-+#{title}")
-    doc = Nokogiri::HTML(open(url))
+    url = "https://www.youtube.com/results?search_query=#{artist}+-+#{title}".gsub(/\s/, '%20')
+    url = URI.escape("https://www.youtube.com/results?search_query=#{artist}+-+#{title}")
+    doc = Nokogiri::HTML(open(url, { ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE }))
     id = doc.xpath("//div[@id='results']/ol[1]/li[1]/ol[1]/li[1]/div[1]")
          .attribute('data-context-item-id').content
     update_attribute(:youtube_id, id) unless id.nil?
