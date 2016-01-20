@@ -3,7 +3,7 @@ class ApiController < ApplicationController
   respond_to :json
 
   def play
-    if ([:title, :nick, :artist] & params.keys).length == 3
+    if (['title', 'nick', 'artist'] & params.keys).length == 3
       @play = api_create(params)
       respond_with(@play)
     else
