@@ -12,7 +12,7 @@ class ApiController < ApplicationController
   end
 
   def scratch
-    if ([:title, :nick, :artist] & params.keys).length == 3
+    if (['title', 'nick', 'artist'] & params.keys).length == 3
       @user = Ircnick.where(nick: params[:nick]).first.user
       fail 'No valid user found' unless @user
       @play = api_create(params['artist'], params['title'], params['nick'],
