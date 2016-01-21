@@ -26,7 +26,11 @@ class ApiController < ApplicationController
   def register
     if params.key?(:email) && params.key?(:nick)
       @user = User.find_by_email(params[:email])
-      @nick = Ircnick.create(nick: params[:nick], user: @user)
+      @nick = Ircnick.find_or_create_by(nick: params[:nick])
+    end
+
+    if @nick.present? && @user.present? && @nick.user.nil?
+      @nick.update_attribute(:user, @user)
     end
 
     if @nick.valid?
