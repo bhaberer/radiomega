@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.2.3'
 
-gem 'rails',                              '4.2.5'
+gem 'rails',                              '4.2.5.1'
 gem 'rake',                               '~> 10.5', '>= 10.5.0'
 gem 'pg',                                 '~> 0.18', '>= 0.18.4'
 gem 'haml-rails',                         '~> 0.9', '>= 0.9.0'
