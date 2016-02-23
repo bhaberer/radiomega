@@ -16,3 +16,8 @@
                 as part of the
                 = link_to play.setlist.title, play.setlist
                 set.
+        - if user_signed_in?
+          = button_to 'Edit Song', edit_song_path(@song), method: :get,
+                      class: 'btn btn-primary'
+          = button_to 'Delete Song', song_path(@song), method: :delete,
+                      class: 'btn btn-danger'

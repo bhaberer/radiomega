@@ -1,7 +1,7 @@
 # Songs Controller
 class SongsController < ApplicationController
   before_action :set_song, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_user!, only: [:edit, :update]
+  before_filter :authenticate_user!, only: [:edit, :update, :destroy]
 
   def index
     @songs = Song.all
@@ -34,7 +34,13 @@ class SongsController < ApplicationController
   end
 
   def destroy
-    redirect_to songs_path, notice: 'That action is not allowed currently'
+    logger.debug "#{current_user} deleted song ##{@song.id}"
+    @song.destroy
+
+    respond_to do |format|
+      format.html { redirect_to songs_url }
+      format.json { head :no_content }
+    end
   end
 
   private

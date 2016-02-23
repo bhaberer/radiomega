@@ -8,11 +8,16 @@
       %h3{ style: 'border-bottom: 1px solid #999' }= @setlist.title
       - @setlist.plays.each do |play|
         %div[play]{ class: cycle(:even_row, :odd_row) }
-          .row.hidden-sm.hidden-xs
-            .col-md-1.time.text-center= play.time.strftime('%R')
-            .col-md-2.nick= play.nick
-            .col-md-7.title.artist
-              = link_to play.song.song_text, play.song
+          .hidden-sm.hidden-xs
+            .row
+              .col-md-1.time.text-center= play.time.strftime('%R')
+              .col-md-2.nick= play.nick
+              .col-md-7.title.artist
+                = link_to play.song.song_text, play.song
+              .col-md-2
+                - if user_signed_in?
+                  = button_to "Delete Play", play_path(play), method: :delete,
+                              class: 'btn btn-xs btn-primary'
           .visible-sm.visible-xs
             .row
               .col-sm-9.col-xs-9

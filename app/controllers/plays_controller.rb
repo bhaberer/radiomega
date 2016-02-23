@@ -1,6 +1,7 @@
 # Controller managing plays
 class PlaysController < ApplicationController
   before_action :set_play, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:destroy]
 
   def index
     @setlists = Setlist.where(type: nil).paginate(page: params[:page], per_page: 10)
@@ -34,19 +35,24 @@ class PlaysController < ApplicationController
   end
 
   def destroy
-    redirect_to plays_path, notice: 'That action is not allowed currently'
+    logger.debug "#{current_user} deleted play ##{@play.id}"
+    @play.destroy
+    respond_to do |format|
+      format.html { redirect_to plays_url }
+      format.json { head :no_content }
+    end
   end
 
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_song
-    @song = Song.find(params[:id])
+  def set_play
+    @play = Play.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the
   #   white list through.
-  def song_params
-    params.require(:song).permit(:title, :artist)
+  def play_params
+    params.require(:play).permit(:song_id, :nick)
   end
 end

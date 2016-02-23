@@ -26,14 +26,18 @@ class Setlist < ActiveRecord::Base
   end
 
   def first_song
-    play = plays.sort { |x, y| x.time <=> y.time }.first
-    play.song.youtube_id unless play.nil?
+    play = valid_plays.first
+    play.youtube_id unless play.nil?
   end
 
   def playlist
-    playlist = plays.sort { |x, y| x.time <=> y.time }.map(&:song)
-    playlist = playlist.map(&:youtube_id)[1..-1]
+    playlist = valid_plays.map(&:youtube_id)[1..-1]
     playlist = [playlist] unless playlist.is_a?(Array)
     playlist.join(',')
+  end
+
+  def valid_plays
+    list = plays.dup.sort { |x, y| x.time <=> y.time }.map(&:song)
+    list.delete_if { |play| !play.youtube_id.present? }
   end
 end
