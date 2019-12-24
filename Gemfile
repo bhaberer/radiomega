@@ -12,7 +12,7 @@ gem 'nokogiri',                           '~> 1.6.7', '>= 1.6.7.2'
 gem 'sass-rails',                         '~> 5.0', '>= 5.0.4'
 gem 'uglifier',                           '~> 2.7', '>= 2.7.2'
 gem 'coffee-rails',                       '~> 4.1', '>= 4.1.1'
-gem 'bootstrap-sass',                     '~> 3.3', '>= 3.3.6'
+gem 'bootstrap-sass',                     '~> 3.4'
 gem 'will_paginate',                      '~> 3.0.7'
 
 group :production do
