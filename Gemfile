@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.5.3'
 
-gem 'rails',                              '4.2.11'
+gem 'rails',                              '4.2.11.1'
 
 gem 'bootstrap-sass',                     '~> 3.4'
 gem 'coffee-rails',                       '~> 4.1', '>= 4.1.1'
