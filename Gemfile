@@ -1,18 +1,19 @@
 source 'https://rubygems.org'
 
-ruby '2.2.3'
+ruby '2.5.3'
 
-gem 'rails',                              '4.2.5.1'
-gem 'rake',                               '~> 10.5', '>= 10.5.0'
-gem 'pg',                                 '~> 0.18', '>= 0.18.4'
-gem 'haml-rails',                         '~> 0.9', '>= 0.9.0'
-gem 'rspec-rails',                        '~> 3.4', '>= 3.4.1'
+gem 'rails',                              '4.2.11'
+
+gem 'bootstrap-sass',                     '~> 3.4'
+gem 'coffee-rails',                       '~> 4.1', '>= 4.1.1'
 gem 'devise',                             '~> 4.7'
-gem 'nokogiri',                           '~> 1.6.7', '>= 1.6.7.2'
+gem 'haml-rails',                         '~> 1.0', '>= 1.0'
+gem 'nokogiri',                           '>= 1.10.4'
+gem 'pg',                                 '~> 0.18', '>= 0.18.4'
+gem 'rake',                               '~> 10.5', '>= 10.5.0'
+gem 'rspec-rails',                        '~> 3.4', '>= 3.4.1'
 gem 'sass-rails',                         '~> 5.0', '>= 5.0.4'
 gem 'uglifier',                           '~> 2.7', '>= 2.7.2'
-gem 'coffee-rails',                       '~> 4.1', '>= 4.1.1'
-gem 'bootstrap-sass',                     '~> 3.4'
 gem 'will_paginate',                      '~> 3.0.7'
 
 group :production do
