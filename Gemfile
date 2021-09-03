@@ -5,6 +5,7 @@ ruby '2.7.4'
 gem 'rails', '5.2.6'
 
 gem 'bootstrap-sass', '~> 3.4'
+gem 'coffee-rails', '~> 4.2'
 gem 'devise', '~> 4.7'
 gem 'haml-rails', '~> 2.0'
 gem 'nokogiri', '>= 1.10.4'
