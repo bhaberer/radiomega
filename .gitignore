@@ -25,7 +25,6 @@ coverage/*
 test/*
 .bundle/*
 .DS_Store
-config/database.yml
 app/.DS_Store
 app/views/.DS_Store
 config/.DS_Store
