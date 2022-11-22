@@ -10,6 +10,7 @@ gem 'devise', '~> 4.7'
 gem 'haml-rails', '~> 2.0'
 gem 'nokogiri', '>= 1.10.4'
 gem 'pg', '~> 1.2.3'
+gem 'psych', '< 4'
 gem 'rake', '~> 12.3'
 gem 'rspec-rails', '~> 3.4', '>= 3.4.1'
 gem 'sass-rails', '~> 5.0', '>= 5.0.4'
@@ -29,8 +30,4 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.11'
 
-group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
-end
 
